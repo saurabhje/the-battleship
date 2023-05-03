@@ -3,7 +3,7 @@ function Ship(length) {
 
   return {
     length: length,
-    hitShip() {
+    hit() {
       hits++;
     },
     isSunk() {

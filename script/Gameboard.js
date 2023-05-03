@@ -13,15 +13,19 @@ function Gameboard() {
   }
 
   function receiveAttack(coordinates) {
-    if (board[coordinates] instanceof Ship) {
-      let hitShip = board[coordinates];
-      hitShip.hit();
-      console.log(hitShip.hit);
-      return true;
-    } else {
-      missedAttacks.push(coordinates)
+    if (board[coordinates] === null) {
+      missedAttacks.push(coordinates);
       return false;
     }
+    
+    const hitShip = board[coordinates];
+    hitShip.hit();
+    
+    if (hitShip.isSunk()) {
+      console.log("You sunk my ship!");
+    }
+    
+    return true;
   }
 
   function allShipsSunk() {
