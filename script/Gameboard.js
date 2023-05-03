@@ -1,6 +1,6 @@
 const Ship = require('./ship');
 
-function GameboardFactory() {
+function Gameboard() {
   let board = Array(100).fill(null);
   let ships = [];
   let missedAttacks = [];
@@ -16,6 +16,7 @@ function GameboardFactory() {
     if (board[coordinates] instanceof Ship) {
       let hitShip = board[coordinates];
       hitShip.hit();
+      console.log(hitShip.hit);
       return true;
     } else {
       missedAttacks.push(coordinates)
@@ -34,3 +35,5 @@ function GameboardFactory() {
     missedAttacks,
   };
 }
+
+module.exports = Gameboard;
