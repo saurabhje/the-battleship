@@ -1,16 +1,16 @@
 function Ship(length) {
-    let hit = 0;
-  
-    return {
-      length: length,
-      Hit() {
-        this.hit++;
-      },
-      isSunk() {
-        return this.hit === length;
-      },
-      hit: hit,
-    };
-  }
-  
-  module.exports = Ship;
+  let hits = 0;
+
+  return {
+    length: length,
+    hitShip() {
+      hits++;
+    },
+    isSunk() {
+      return hits === length;
+    },
+    hits: hits,
+  };
+}
+
+module.exports = Ship;
