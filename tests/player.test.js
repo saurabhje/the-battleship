@@ -27,10 +27,7 @@ test('Testing the attack Method', () => {
 
 test('Testing the randomAttack method', () => {
     expect(player2.previousAttacks.size).toBe(0);
-  
-    // Make a few moves with randomAttack and check that the previousAttacks set grows
     for (let i = 0; i < 10; i++) {
-      console.log('est')
       player2.randomAttack();
     }
     expect(player2.previousAttacks.size).toBe(10);

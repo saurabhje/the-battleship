@@ -10,8 +10,8 @@ function Players(gameboard, name = "Player") {
     let x;
     do{
         x = Math.floor(Math.random()* 100)
-    }while(!previousAttacks.has(x)){
-        previousAttacks.push(x);
+    }while(previousAttacks.has(x)){
+        previousAttacks.add(x);
         return attack(x);
     }
    }
