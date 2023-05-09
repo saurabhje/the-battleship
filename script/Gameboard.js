@@ -18,11 +18,6 @@ function Gameboard() {
     
     const hitShip = board[coordinates];
     hitShip.hit();
-    
-    if (hitShip.isSunk()) {
-      console.log("You sunk my ship!");
-    }
-    
     return true;
   }
 
