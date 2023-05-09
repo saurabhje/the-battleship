@@ -1,5 +1,3 @@
-const Ship = require('./ship');
-
 function Gameboard() {
   let board = Array(100).fill(null);
   let ships = [];
