@@ -1,13 +1,24 @@
+function Players(gameboard, name = "Player") {
 
-function Players() {
-    
-   function attack(x,y){
-    const result = this.Gameboard.recieveAttack(x,y);
+   let previousAttacks = new Set();
+   function attack(x){
+    const result = Gameboard.recieveAttack(x);
     return result;
    } 
 
    function randomAttack(){
-    let x,y
+    let x;
+    do{
+        x = Math.floor(Math.random()* 100)
+    }while(previousAttacks.has(x)){
+        previousAttacks.add(x);
+        return attack(x);
+    }
+   }
+   return {
+        name,
+        attack,
+        randomAttack,
    }
     
 }
