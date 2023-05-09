@@ -2,7 +2,7 @@ function Players(gameboard, name = "Player") {
 
    let previousAttacks = new Set();
    function attack(x){
-    const result = gameboard.recieveAttack(x);
+    const result = gameboard.receiveAttack(x);
     return result;
    } 
 
