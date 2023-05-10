@@ -1,7 +1,7 @@
 const Player = require('../script/player');
 const Gameboard = require('../script/gameboard');
 const Ship = require('../script/ship');
-const { experiments } = require('webpack');
+
 
 let player1, player2, ship1, ship2, playerboard, compboard;
 
