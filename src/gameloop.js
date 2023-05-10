@@ -1,8 +1,8 @@
-const Players = require('./player');
-const Gameboard = require('./gameboard');
-const Ship  = require('./ship');
+import Players from "./player";
+import Gameboard from "./gameboard";
+import Ship from "./ship";
 
-
+//Just Testing it
 let player1,player2,compboard,playerboard;
 playerboard = new Gameboard();
 compboard = new Gameboard();
