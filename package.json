@@ -1,9 +1,8 @@
 {
   "name": "the-battleship",
   "version": "1.0.0",
-  "description": "",
+  "description": "gameloop.js\r used cell.dataset.index = i; this to keep an account of which index was clicked by using the DOM interaction \r and then we use later on +e.target.dataset.index which would have the same index numer as that of the index that was just clicked on",
   "main": "index.js",
-  "type": "module",
   "directories": {
     "test": "tests"
   },
@@ -22,10 +21,11 @@
   },
   "homepage": "https://github.com/saurabhje/the-battleship#readme",
   "devDependencies": {
-    "@babel/core": "^7.21.4",
-    "@babel/preset-env": "^7.21.4",
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
     "babel-jest": "^29.5.0",
-    "webpack": "^5.80.0",
-    "webpack-cli": "^5.0.2"
+    "jest": "^29.5.0",
+    "webpack": "^5.82.1",
+    "webpack-cli": "^5.1.1"
   }
 }
