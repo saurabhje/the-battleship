@@ -6,4 +6,4 @@ import Ship from "./ship";
 const player1board = document.getElementById('playerboard');
 const player2board = document.getElementById('compboard');
 const playerboard = new Gameboard();
-renderBoard(player1board, playerboard);
+DOM.renderBoard(player1board, playerboard);
