@@ -13,4 +13,4 @@ const DOM = (()=>{
     }
 })();
 
-export default DOM;
+export default {DOM};
