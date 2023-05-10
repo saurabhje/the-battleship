@@ -1,4 +1,4 @@
-const DOM = (()=>{
+const doM = (()=>{
     function renderBoard(boardElement,board){
         boardElement.innerHTML = '';
         for(let i =0;i<100;i++){
@@ -9,9 +9,8 @@ const DOM = (()=>{
         }
     };
     return{
-
         renderBoard,
     }
 })();
 
-export default DOM
+export default doM
