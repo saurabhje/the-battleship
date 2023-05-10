@@ -9,8 +9,6 @@ const DOM = (()=>{
         }
     };
     return{
-        // player1board,
-        // player2board,
         renderBoard,
     }
 })();
