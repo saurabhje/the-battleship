@@ -5,12 +5,15 @@ function Ship(length) {
     length: length,
     hit() {
       hits++;
+      return hits;
     },
     isSunk() {
       return hits === length;
     },
-    hits: hits,
+    get hits(){
+      return hits;
+    },
   };
 }
 
-module.exports = Ship;
+export default Ship;
