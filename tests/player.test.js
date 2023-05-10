@@ -1,6 +1,6 @@
-const Player = require('../script/player');
-const Gameboard = require('../script/gameboard');
-const Ship = require('../script/ship');
+import Gameboard from "../script/gameboard";
+import Ship from "../script/ship";
+import Players from "../script/player";
 
 
 let player1, player2, ship1, ship2, playerboard, compboard;
@@ -8,8 +8,8 @@ let player1, player2, ship1, ship2, playerboard, compboard;
 beforeEach(() => {
   playerboard = new Gameboard();
   compboard = new Gameboard();
-  player1 = new Player(playerboard, 'Player');
-  player2 = new Player(compboard, 'computer');
+  player1 = new Players(playerboard, 'Player');
+  player2 = new Players(compboard, 'computer');
   ship1 = new Ship(5);
   ship2 = new Ship(4);
 });

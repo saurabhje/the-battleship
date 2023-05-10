@@ -24,4 +24,4 @@ function Players(gameboard, name = "Player") {
     
 }
 
-module.exports = Players;
+export default Players;
