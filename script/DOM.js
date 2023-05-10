@@ -1,6 +1,4 @@
 const DOM = (()=>{
-
-
     function renderBoard(boardElement,board){
         boardElement.innerHTML = '';
         for(let i =0;i<100;i++){

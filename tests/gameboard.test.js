@@ -1,4 +1,4 @@
-import Gameboard from "../script/gameboard";
+import Gameboard from "../script/Gameboard";
 import Ship from "../script/ship";
 let gameboard;
 let ship;
