@@ -1,12 +1,15 @@
+
  #boards{
   display: flex;
   justify-content: space-between;
+  margin: 40px;
   }
 .board {
     width: 400px;
     height: 400px;
     display: flex;
     flex-wrap: wrap;
+    border: 1px solid black;
   }
   .cell {
     width: 40px;
