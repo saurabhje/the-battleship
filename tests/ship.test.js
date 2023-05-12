@@ -7,11 +7,11 @@ beforeEach(() => {
 
 test('testing the Hit function of the ship factory', () => {
   ship.hit();
-  expect(ship.hits).toBe(1);
+  expect(ship.hits()).toBe(1);
 });
 
 test('testing the Hit function', () => {
   ship.hit();
   ship.hit();
-  expect(ship.hits).toBe(2);
+  expect(ship.hits()).toBe(2);
 });

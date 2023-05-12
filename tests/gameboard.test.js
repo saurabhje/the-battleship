@@ -5,8 +5,8 @@ let ship;
 
 
 beforeEach(()=>{
-  gameboard = new Gameboard();
-  ship = new Ship(3);
+  gameboard = Gameboard();
+  ship = Ship("cruise",3);
 });
 
 
@@ -27,7 +27,11 @@ test('attacking a spot where there is a ship',()=>{
 test('sinking a ship on the gameboard',()=>{
   gameboard.placeShip(ship, [3, 4, 5]);
   gameboard.receiveAttack(3);
+  expect(gameboard.allShipsSunk()).toBeFalsy();
   gameboard.receiveAttack(4);
+  expect(gameboard.allShipsSunk()).toBeFalsy();
   gameboard.receiveAttack(5);
+  console.log(gameboard.allShipsSunk());
   expect(gameboard.allShipsSunk()).toBeTruthy();
 });
+

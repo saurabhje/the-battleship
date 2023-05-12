@@ -2,10 +2,11 @@ import doM from "./DOM";
 import Player from "./player";
 import Gameboard from "./gameboard";
 import Ship from "./ship";
+import gameLoop from "./gameloop";
 
-const player1board = document.getElementById('playerboard');
-const player2board = document.getElementById('compboard');
-const playerboard = new Gameboard();
-const compboard = new Gameboard();
-doM.renderBoard(player1board, playerboard);
-doM.renderBoard(player2board, compboard);
+let player, computer;
+let compboard, playerboard;
+player = Player(compboard,"Player");
+computer = Player(playerboard,"Computer");
+
+gameLoop(player,computer);

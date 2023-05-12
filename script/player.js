@@ -1,8 +1,9 @@
-function Players(gameboard, name = "Player") {
+import Gameboard from "./gameboard";
 
+function Players(playerboard,opponentboard, name = "Player") {
    let previousAttacks = new Set();
-   function attack(x){
-    const result = gameboard.receiveAttack(x);
+   function Attack(opponentboard,x){
+    const result = opponentboard.receiveAttack(x);
     return result;
    } 
 
@@ -10,18 +11,16 @@ function Players(gameboard, name = "Player") {
     let x;
     do{
         x = Math.floor(Math.random()* 100)
-    }while(previousAttacks.has(x)){
+    }while(previousAttacks.has(x));
         previousAttacks.add(x);
-        return attack(x);
-    }
+        return Attack(playerboard,x);
    }
    return {
         name,
-        attack,
+        Attack,
         randomAttack,
         previousAttacks,
    }
-    
 }
 
 export default Players;

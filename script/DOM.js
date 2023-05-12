@@ -5,6 +5,7 @@ const doM = (()=>{
             const cell = document.createElement('div');
             cell.dataset.index = i;
             cell.classList.add('cell');
+            cell.innerText = `${i}`;
             boardElement.appendChild(cell);
         }
     };
