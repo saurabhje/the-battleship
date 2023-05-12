@@ -6,7 +6,7 @@ import gameLoop from "./gameloop";
 
 let player, computer;
 let compboard, playerboard;
-player = Player(compboard,"Player");
-computer = Player(playerboard,"Computer");
+player = Player("Player");
+computer = Player("Computer");
 
 gameLoop(player,computer);

@@ -8,22 +8,22 @@ let player1, player2, ship1, ship2, playerboard, compboard;
 beforeEach(() => {
   playerboard =  Gameboard();
   compboard =  Gameboard();
-  player1 = new Players(playerboard,compboard, 'Player');
-  player2 = new Players(compboard,playerboard, 'computer');
+  player1 = Players(playerboard, 'Player');
+  player2 = Players(compboard, 'computer');
   ship1 = new Ship(5);
 });
 
 test('attacking a random spot on the board', () => {
-  compboard.placeShip(ship1, [1, 2, 3, 4, 5]);
-  expect(player1.Attack(compboard, 0)).toBeFalsy();
+  playerboard.placeShip(ship1, [1, 2, 3, 4, 5]);
+  expect(player1.Attack(0)).toBeFalsy();
 });
 
 test('Testing the attack Method', () => {
   ship2 = Ship("kremlin",4);
-  compboard.placeShip(ship2, [6, 7, 8, 9]);
-  expect(compboard.allShipsSunk()).toBeFalsy();
-  [6, 7, 8, 9].forEach((coord) => player1.Attack(compboard, coord));
-  expect(compboard.allShipsSunk()).toBeTruthy();
+  playerboard.placeShip(ship2, [6, 7, 8, 9]);
+  expect(playerboard.allShipsSunk()).toBeFalsy();
+  [6, 7, 8, 9].forEach((coord) => player1.Attack(coord));
+  expect(playerboard.allShipsSunk()).toBeTruthy();
 });
 
 test('Testing the randomAttack method', () => {

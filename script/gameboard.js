@@ -16,7 +16,6 @@ function Gameboard() {
       missedAttacks.push(coordinates);
       return false;
     }
-    
     const hitShip = board[coordinates];
     hitShip.hit();
     return true;
