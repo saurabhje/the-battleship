@@ -29,12 +29,18 @@ function gameLoop(player1, player2) {
         } else {
           event.target.style.backgroundColor = "#4a4848";
         }
-    })
+        checkgameOver();
+        switchPlayer();
+    });
+    function switchPlayer(){
+        let opponent = currentPlayer === player1? player2 : player1;
+    }
     function checkgameOver(){
         if(playerboard.allShipsSunk() || compboard.allShipsSunk()){
             gameOver = true;
             return true;
         }  
     }
+
 };
 export default gameLoop;
