@@ -21,6 +21,7 @@ function gameLoop(player1, player2) {
     let currentPlayer = player1;
     let gameOver = false;
 
+    if(currentPlayer == player1){
     player2board.addEventListener('click',(event)=>{
         const cellindex = event.target.dataset.index;
         const result = compboard.receiveAttack(cellindex);
@@ -31,7 +32,15 @@ function gameLoop(player1, player2) {
         }
         checkgameOver();
         switchPlayer();
-    });
+        })
+    }
+    else{
+        let x;
+        do{
+            x = Math.floor(math.random()*100)
+        }while()
+    }
+
     function switchPlayer(){
         let opponent = currentPlayer === player1? player2 : player1;
     }
