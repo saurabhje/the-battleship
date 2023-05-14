@@ -11,17 +11,12 @@ const doM = (()=>{
             boardElement.appendChild(cell);
         }
     };
-    function handleInput(event) {
-        const cellindex = event.target.dataset.index;
-        const result = compboard.receiveAttack(cellindex);
-        if (result === true) {
-          event.target.style.backgroundColor = "#f70202";
-        } else {
-          event.target.style.backgroundColor = "#4a4848";
-        }
+    function getCell(boardElement,index) {
+        return boardElement.querySelector(`[data-index="${index}"]`);
     };
     return{
         renderBoard,
+        getCell
     }
 })();
 

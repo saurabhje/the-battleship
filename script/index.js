@@ -4,9 +4,5 @@ import Gameboard from "./gameboard";
 import Ship from "./ship";
 import gameLoop from "./gameloop";
 
-let player, computer;
-let compboard, playerboard;
-player = Player("Player");
-computer = Player("Computer");
 
-gameLoop(player,computer);
+gameLoop({name: "player1"}, {name: "player2"});
