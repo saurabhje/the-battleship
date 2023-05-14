@@ -21,38 +21,45 @@ function gameLoop(player1, player2) {
   let currentPlayer = player1;
   let gameOver = false;
 
-  player2board.addEventListener("click", (event) => {
-    if(gameOver)
+  player2board.addEventListener("click", (e) => {
+    if (currentPlayer !== player1 || gameOver) {
       return;
-    if (currentPlayer !== player1) {
-      return;}
-      const cellindex = event.target.dataset.index;
-      const result = compboard.receiveAttack(cellindex);
-      if (result === true) {
-        event.target.style.backgroundColor = "#f70202";
-      } else {
-        event.target.style.backgroundColor = "#4a4848";
-      }
-      checkgameOver();
-      currentPlayer = switchPlayer();
+    }
+    handleClick(e);
+    checkgameOver();
+    currentPlayer = switchPlayer();
+    setTimeout(computerTurn, 700);
+  });
 
-    setTimeout(()=>{
-      if(currentPlayer!== player2) {
-        return;
-      }
-        let x = Math.floor(Math.random() * 100);
-        const comphit = playerboard.receiveAttack(x);
-        const cell = player1board.querySelector(`[data-index='${x}']`);
-        if (comphit === true) {
-          cell.style.backgroundColor = "#f70202";
-        } else {
-          cell.style.backgroundColor = "#4a4848";
-        }
-        checkgameOver();
-        currentPlayer = switchPlayer();
-    },700)
-  })
+  function handleClick(event) {
+    if (gameOver) {
+      return;
+    }
+    const cellindex = event.target.dataset.index;
+    const result = compboard.receiveAttack(cellindex);
+    if (result === true) {
+      event.target.style.backgroundColor = "#f70202";
+    } else {
+      event.target.style.backgroundColor = "#4a4848";
+    }
+  }
 
+  function computerTurn() {
+    if (gameOver) {
+      return;
+    }
+    let x = Math.floor(Math.random() * 100);
+    console.log(x);
+    const comphit = playerboard.receiveAttack(x);
+    const cell = player1board.querySelector(`[data-index='${x}']`);
+    if (comphit === true) {
+      cell.style.backgroundColor = "#f70202";
+    } else {
+      cell.style.backgroundColor = "#4a4848";
+    }
+    checkgameOver();
+    currentPlayer = switchPlayer();
+  }
 
   function switchPlayer() {
     return (currentPlayer = currentPlayer === player1 ? player2 : player1);
@@ -62,6 +69,7 @@ function gameLoop(player1, player2) {
     if (playerboard.allShipsSunk()) {
       gameOver = true;
       console.log("Game over! Computer won!");
+      player2board.removeEventListener("click", handleClick);
       return;
     }
     if (compboard.allShipsSunk()) {
@@ -69,9 +77,7 @@ function gameLoop(player1, player2) {
       console.log("Game over! Player won!");
       return;
     }
+  }
 }
-}
-
-
 
 export default gameLoop;

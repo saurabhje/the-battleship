@@ -11,12 +11,8 @@ const doM = (()=>{
             boardElement.appendChild(cell);
         }
     };
-    function getCell(boardElement,index) {
-        return boardElement.querySelector(`[data-index="${index}"]`);
-    };
     return{
-        renderBoard,
-        getCell
+        renderBoard
     }
 })();
 
