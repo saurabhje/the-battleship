@@ -1,4 +1,4 @@
-function Ship(name, length) {
+function Ship(length) {
   let hits = 0;
 
   return {
@@ -9,9 +9,6 @@ function Ship(name, length) {
     },
     isSunk() {
       return hits === length;
-    },
-    get name() {
-      return name;
     },
     get hits(){
       return hits;

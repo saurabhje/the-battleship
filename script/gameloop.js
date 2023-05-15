@@ -2,21 +2,22 @@ import Players from "./player";
 import Gameboard from "./gameboard";
 import Ship from "./ship";
 import doM from "./DOM";
+import { placeships } from "./placeships";
 
 function gameLoop(player1, player2) {
   let compboard, playerboard;
   playerboard = Gameboard();
   compboard = Gameboard();
-
-  playerboard.placeShip(Ship("destroyer", 3), [1, 2, 3]);
-  playerboard.placeShip(Ship("cruise", 3), [5, 6, 7]);
-  compboard.placeShip(Ship("destroyer", 3), [1, 2, 3]);
-  compboard.placeShip(Ship("cruise", 3), [8, 9, 10]);
-
   const player1board = document.getElementById("playerboard");
   const player2board = document.getElementById("compboard");
-  doM.renderBoard(player1board, playerboard);
-  doM.renderBoard(player2board, compboard);
+  doM.renderBoard(player1board,"player");
+  doM.renderBoard(player2board, "yourmom");
+
+
+  placeships("player",playerboard);
+  placeships("yourmom",compboard);
+
+ 
 
   let currentPlayer = player1;
   let gameOver = false;
@@ -28,7 +29,7 @@ function gameLoop(player1, player2) {
     handleClick(e);
     checkgameOver();
     currentPlayer = switchPlayer();
-    setTimeout(computerTurn, 700);
+    setTimeout(computerTurn, 500);
   });
 
   function handleClick(event) {
@@ -49,7 +50,6 @@ function gameLoop(player1, player2) {
       return;
     }
     let x = Math.floor(Math.random() * 100);
-    console.log(x);
     const comphit = playerboard.receiveAttack(x);
     const cell = player1board.querySelector(`[data-index='${x}']`);
     if (comphit === true) {

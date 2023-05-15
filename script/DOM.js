@@ -1,19 +1,26 @@
-import Gameboard from "./gameboard";
-let compboard = Gameboard();
 const doM = (()=>{
-    function renderBoard(boardElement,board){
+    function renderBoard(boardElement, holder) {
         boardElement.innerHTML = '';
-        for(let i =0;i<100;i++){
+        for (let i = 0; i < 100; i++) {
             const cell = document.createElement('div');
             cell.dataset.index = i;
-            cell.classList.add('cell');
+            if(holder == "player"){
+                cell.classList.add('cell');
+                cell.classList.add(`h${i}`);
+            }
+            else if(holder == "yourmom"){
+                cell.classList.add('enemycell');
+                cell.classList.add(`e${i}`);
+            }
             cell.innerText = `${i}`;
             boardElement.appendChild(cell);
         }
     };
-    return{
+
+    return {
         renderBoard
     }
 })();
+
 
 export default doM

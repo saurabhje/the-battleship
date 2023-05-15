@@ -4,7 +4,12 @@ function Gameboard() {
   let ships = [];
   let missedAttacks = [];
 
-  function placeShip(ship, coordinates) {
+  function placeShip(ship,index) {
+    let shiplength = ship.length;
+    let coordinates = [];
+    for(let i=1;i<shiplength;i++){
+      coordinates.push(index+i);
+    }
     coordinates.forEach(coord => {
       board[coord] = ship;
     });
