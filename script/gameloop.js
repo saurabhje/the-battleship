@@ -18,7 +18,7 @@ function gameLoop(player1, player2) {
   placeships("yourmom",compboard);
 
  
-
+  let previousAttack = new Set(); //to prevent the comp from attacking the same index twice
   let currentPlayer = player1;
   let gameOver = false;
 
@@ -50,6 +50,9 @@ function gameLoop(player1, player2) {
       return;
     }
     let x = Math.floor(Math.random() * 100);
+    while(previousAttack.has(x)){
+      x = Math.floor(Math.random() * 100);
+    }
     const comphit = playerboard.receiveAttack(x);
     const cell = player1board.querySelector(`[data-index='${x}']`);
     if (comphit === true) {
@@ -57,6 +60,7 @@ function gameLoop(player1, player2) {
     } else {
       cell.style.backgroundColor = "#4a4848";
     }
+    previousAttack.add(x);
     checkgameOver();
     currentPlayer = switchPlayer();
   }
