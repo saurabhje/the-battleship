@@ -4,18 +4,20 @@ function Gameboard() {
   let ships = [];
   let missedAttacks = [];
 
+
   function placeShip(ship,index) {
     let shiplength = ship.length;
     let coordinates = [];
-    for(let i=1;i<shiplength;i++){
+    for(let i=0;i<shiplength;i++){
       coordinates.push(index+i);
     }
     coordinates.forEach(coord => {
       board[coord] = ship;
     });
     ships.push(ship);
-  }
 
+  }
+  
   function receiveAttack(coordinates) {
     if (board[coordinates] === null) {
       missedAttacks.push(coordinates);
@@ -29,8 +31,13 @@ function Gameboard() {
   function allShipsSunk() {
     return ships.every(ship => ship.isSunk());
   }
+  function getBoard(){
+    return board;
+  }
 
   return {
+    board,
+    getBoard,
     placeShip,
     receiveAttack,
     allShipsSunk,

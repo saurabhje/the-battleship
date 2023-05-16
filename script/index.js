@@ -5,4 +5,4 @@ import Ship from "./ship";
 import gameLoop from "./gameloop";
 
 
-gameLoop({name: "player1"}, {name: "player2"});
+gameLoop({name: "Player"}, {name: "Computer"});

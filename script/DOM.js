@@ -8,7 +8,7 @@ const doM = (()=>{
                 cell.classList.add('cell');
                 cell.classList.add(`h${i}`);
             }
-            else if(holder == "yourmom"){
+            else if(holder == "computer"){
                 cell.classList.add('enemycell');
                 cell.classList.add(`e${i}`);
             }

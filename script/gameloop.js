@@ -11,17 +11,18 @@ function gameLoop(player1, player2) {
   const player1board = document.getElementById("playerboard");
   const player2board = document.getElementById("compboard");
   doM.renderBoard(player1board,"player");
-  doM.renderBoard(player2board, "yourmom");
+  doM.renderBoard(player2board, "computer");
 
 
   placeships("player",playerboard);
-  placeships("yourmom",compboard);
+  placeships("computer",compboard);
 
  
   let previousAttack = new Set(); //to prevent the comp from attacking the same index twice
   let currentPlayer = player1;
   let gameOver = false;
 
+ 
   player2board.addEventListener("click", (e) => {
     if (currentPlayer !== player1 || gameOver) {
       return;

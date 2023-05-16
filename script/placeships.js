@@ -1,6 +1,7 @@
 import Ship from "./ship";
+import Gameboard from "./gameboard";
 
-function placeships(holder, board) {
+function placeships(holder, playerboard) {
   if (holder === "player") {
     const shipsLength = [5, 4, 3, 2];
     let shipslen = shipsLength.length;
@@ -13,25 +14,27 @@ function placeships(holder, board) {
         cell.addEventListener('click', (event) => {
           const cell = event.target;
           const index = parseInt(cell.dataset.index);
-          let temp = index;
-          const ship = Ship(shipsLength[i]);
-          board.placeShip(ship, index);
-          
-          for (let k = 0; k < shipsLength[i]; k++) {
-            document.querySelector(`.h${temp}`).style.backgroundColor = 'blue';
-            temp++;
-          }
+          const canPlaceShip = checkShipPlacement(playerboard,index,shipsLength[i]);
+          const noOverLap = overLapping(index,shipsLength[i])
+
+          if(canPlaceShip && noOverLap){
+            console.log(playerboard.board)
+            const ship = Ship(shipsLength[i]);
+            playerboard.placeShip(ship, index);  
+            for(let k =0;k<shipsLength[i];k++){
+              document.querySelector(`.h${index + k}`).style.backgroundColor = 'blue';
+            }  
           
           i++;
-          
-          if (i == shipslen) {
+          if (i === shipslen) {
             game = false;
           }
+        }
         });
       });
     }
   } 
-  else if (holder === "yourmom") {
+  else if (holder === "computer") {
     const shipsLength = [5, 4, 3, 2];
     let shipslen = shipsLength.length;
     let i = 0;
@@ -39,16 +42,12 @@ function placeships(holder, board) {
     while (i < shipslen) {
       let ship = Ship(shipsLength[i]);
       let index = Math.floor(Math.random() * 100);
-      let lastCellIndex = index + shipsLength[i] - 1;
-      let indexrow = Math.floor(index / 10);
-      let lastrow = Math.floor(lastCellIndex / 10);
-      
-      if (lastrow > indexrow) { // Check if the ship is overflowing
+      const noOverLap = overLapping(index,shipsLength[i]);
+      if (!noOverLap) { // Check if the ship is overflowing
         continue;
       }
-      
       let temp = index;
-      board.placeShip(ship, index);
+      playerboard.placeShip(ship, index);
       
       for (let k = 0; k < shipsLength[i]; k++) {
         document.querySelector(`.e${temp}`).style.backgroundColor = 'blue';
@@ -58,6 +57,26 @@ function placeships(holder, board) {
       i++; 
     }     
   }
+}
+function overLapping(startIndex,length){
+  let lastCellIndex = startIndex + length - 1;
+  let indexrow = Math.floor(startIndex / 10);
+  let lastrow = Math.floor(lastCellIndex / 10);
+  if(lastrow > indexrow){
+    return false;
+  }
+  return true;
+}
+function checkShipPlacement(playerboard,startIndex,length){
+  const board = playerboard.getBoard();
+  for(let i =0;i<length;i++){
+    const indices = startIndex + i;
+
+    if(board[indices] !== null){
+      return false;
+    }
+  }
+  return true;
 }
 
 export { placeships }
