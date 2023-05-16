@@ -14,27 +14,25 @@ function placeships(holder, playerboard) {
         cell.addEventListener('click', (event) => {
           const cell = event.target;
           const index = parseInt(cell.dataset.index);
-          const canPlaceShip = checkShipPlacement(playerboard,index,shipsLength[i]);
-          const noOverLap = overLapping(index,shipsLength[i])
+          const canPlaceShip = checkShipPlacement(playerboard, index, shipsLength[i]);
+          const noOverlap = checkOverlap(index, shipsLength[i]);
 
-          if(canPlaceShip && noOverLap){
-            console.log(playerboard.board)
+          if (canPlaceShip && noOverlap) {
+            console.log(playerboard.board);
             const ship = Ship(shipsLength[i]);
             playerboard.placeShip(ship, index);  
-            for(let k =0;k<shipsLength[i];k++){
+            for (let k = 0; k < shipsLength[i]; k++) {
               document.querySelector(`.h${index + k}`).style.backgroundColor = 'blue';
-            }  
-          
-          i++;
-          if (i === shipslen) {
-            game = false;
+            }
+            i++;
+            if (i === shipslen) {
+              game = false;
+            }
           }
-        }
         });
       });
     }
-  } 
-  else if (holder === "computer") {
+  } else if (holder === "computer") {
     const shipsLength = [5, 4, 3, 2];
     let shipslen = shipsLength.length;
     let i = 0;
@@ -42,10 +40,12 @@ function placeships(holder, playerboard) {
     while (i < shipslen) {
       let ship = Ship(shipsLength[i]);
       let index = Math.floor(Math.random() * 100);
-      const noOverLap = overLapping(index,shipsLength[i]);
-      if (!noOverLap) { // Check if the ship is overflowing
+      const noOverlap = checkOverlap(index, shipsLength[i]);
+
+      if (!noOverlap) { // Check if the ship is overlapping
         continue;
       }
+      
       let temp = index;
       playerboard.placeShip(ship, index);
       
@@ -58,25 +58,30 @@ function placeships(holder, playerboard) {
     }     
   }
 }
-function overLapping(startIndex,length){
+
+function checkOverlap(startIndex, length) {
   let lastCellIndex = startIndex + length - 1;
   let indexrow = Math.floor(startIndex / 10);
   let lastrow = Math.floor(lastCellIndex / 10);
-  if(lastrow > indexrow){
+  
+  if (lastrow > indexrow) {
     return false;
   }
+  
   return true;
 }
-function checkShipPlacement(playerboard,startIndex,length){
+
+function checkShipPlacement(playerboard, startIndex, length) {
   const board = playerboard.getBoard();
-  for(let i =0;i<length;i++){
+  for (let i = 0; i < length; i++) {
     const indices = startIndex + i;
 
-    if(board[indices] !== null){
+    if (board[indices] !== null) {
       return false;
     }
   }
+  
   return true;
 }
 
-export { placeships }
+export { placeships };
