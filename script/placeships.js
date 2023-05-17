@@ -8,7 +8,7 @@ function placeships(holder, playerboard) {
     const cells = document.querySelectorAll('.cell');
     let game = true;
     let i = 0;
-
+    const turn = document.getElementById('turn'); 
     if (game) {
       cells.forEach(cell => {
         cell.addEventListener('click', (event) => {
