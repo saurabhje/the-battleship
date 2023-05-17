@@ -56,12 +56,8 @@ function placeships(holder, playerboard) {
 
       if (!noOverlap) { // Check if the ship is overlapping
         continue;
-      }
-      
-      let temp = index;
+      } 
       playerboard.placeShip(ship, index);
-      
-      
       i++; 
     }     
   }

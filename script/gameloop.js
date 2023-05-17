@@ -90,13 +90,13 @@ function gameLoop(player1, player2) {
   function checkgameOver() {
     if (playerboard.allShipsSunk()) {
       gameOver = true;
-      document.getElementById('winner').innerText = "You Win!";
+      document.getElementById('winner').innerText = "Computer Win!";
       player2board.removeEventListener("click", handleClick);
       return;
     }
     if (compboard.allShipsSunk()) {
       gameOver = true;
-      document.getElementById('winner').innerText = "Computer Win!";
+      document.getElementById('winner').innerText = "You Win!";
       return;
     }
   }

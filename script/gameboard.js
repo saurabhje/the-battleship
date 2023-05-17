@@ -29,6 +29,7 @@ function Gameboard() {
   }
 
   function allShipsSunk() {
+    console.log(ships.every(ship => ship.isSunk()))
     return ships.every(ship => ship.isSunk());
   }
   function getBoard(){
