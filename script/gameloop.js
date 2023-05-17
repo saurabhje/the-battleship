@@ -8,6 +8,7 @@ function gameLoop(player1, player2) {
   let compboard, playerboard;
   playerboard = Gameboard();
   compboard = Gameboard();
+  const clickedCells = [];
   const player1board = document.getElementById("playerboard");
   const player2board = document.getElementById("compboard");
   doM.renderBoard(player1board,"player");
@@ -22,16 +23,32 @@ function gameLoop(player1, player2) {
   let currentPlayer = player1;
   let gameOver = false;
 
- 
+  const cells = document.querySelectorAll('.cell');
+  
   player2board.addEventListener("click", (e) => {
-    if (currentPlayer !== player1 || gameOver) {
-      return;
+    const isvalidclick = checkDouble(e);
+    if(isvalidclick){
+      if (currentPlayer !== player1 || gameOver) {
+        return;
+      }
+      handleClick(e);
+      checkgameOver();
+      currentPlayer = switchPlayer();
+      setTimeout(computerTurn, 500);
     }
-    handleClick(e);
-    checkgameOver();
-    currentPlayer = switchPlayer();
-    setTimeout(computerTurn, 500);
+    
   });
+
+
+  
+  function checkDouble(e){
+    const cellindex = e.target.dataset.index;
+    if(clickedCells.includes(cellindex)){
+      return false;
+    }
+    clickedCells.push(cellindex);
+    return true;
+  }
 
   function handleClick(event) {
     if (gameOver) {
