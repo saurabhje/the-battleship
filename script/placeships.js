@@ -8,7 +8,8 @@ function placeships(holder, playerboard) {
     const cells = document.querySelectorAll('.cell');
     let game = true;
     let i = 0;
-    const turn = document.getElementById('turn'); 
+    const turn = document.getElementById('turn');
+    console.log(i)
     if (game) {
       cells.forEach(cell => {
         cell.addEventListener('click', (event) => {
@@ -16,7 +17,18 @@ function placeships(holder, playerboard) {
           const index = parseInt(cell.dataset.index);
           const canPlaceShip = checkShipPlacement(playerboard, index, shipsLength[i]);
           const noOverlap = checkOverlap(index, shipsLength[i]);
-
+          if(i ==0){
+            turn.innerText = "Place your Submarine";
+          }
+          else if(i==1){
+            turn.innerText = "Place your Attackerr";
+          }
+          else if(i==2){
+            turn.innerText = "Place your Ship";
+          }
+          else{
+            turn.innerText = "Play";
+          }
           if (canPlaceShip && noOverlap) {
             console.log(playerboard.board);
             const ship = Ship(shipsLength[i]);
