@@ -21,4 +21,7 @@
     border: 1px solid black;
     box-sizing: border-box;
   }
+  .Labels{
+    background-color: rgba(3, 3, 3, 0.266);
+  }
   
