@@ -1,4 +1,7 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans&display=swap');
+*{
+  font-family: 'Instrument Sans', sans-serif;
+}
  #boards{
   display: flex;
   justify-content: space-between;
@@ -6,15 +9,15 @@
   text-align: center;
   }
 .board {
-    width: 400px;
-    height: 400px;
+    width: 450px;
+    height: 450px;
     display: flex;
     flex-wrap: wrap;
     border: 1px solid black;
   }
   .cell , .enemycell {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border: 1px solid black;
     box-sizing: border-box;
   }
