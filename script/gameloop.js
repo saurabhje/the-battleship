@@ -59,7 +59,7 @@ function gameLoop(player1, player2) {
     if (result === true) {
       event.target.style.backgroundColor = "#f70202";
     } else {
-      event.target.style.backgroundColor = "#4a4848";
+      event.target.style.backgroundColor = "#02d91b";
     }
   }
 
@@ -76,7 +76,7 @@ function gameLoop(player1, player2) {
     if (comphit === true) {
       cell.style.backgroundColor = "#f70202";
     } else {
-      cell.style.backgroundColor = "#4a4848";
+      cell.style.backgroundColor = "#02d91b";
     }
     previousAttack.add(x);
     checkgameOver();
