@@ -49,10 +49,6 @@ function placeships(holder, playerboard) {
       let temp = index;
       playerboard.placeShip(ship, index);
       
-      for (let k = 0; k < shipsLength[i]; k++) {
-        document.querySelector(`.e${temp}`).style.backgroundColor = 'blue';
-        temp++;
-      }
       
       i++; 
     }     

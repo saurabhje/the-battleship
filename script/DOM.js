@@ -12,7 +12,6 @@ const doM = (()=>{
                 cell.classList.add('enemycell');
                 cell.classList.add(`e${i}`);
             }
-            cell.innerText = `${i}`;
             boardElement.appendChild(cell);
         }
     };
