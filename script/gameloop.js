@@ -23,7 +23,7 @@ function gameLoop(player1, player2) {
   let currentPlayer = player1;
   let gameOver = false;
 
-  const cells = document.querySelectorAll('.cell');
+  // const cells = document.querySelectorAll('.cell');
   
   player2board.addEventListener("click", (e) => {
     const isvalidclick = checkDouble(e);
@@ -64,23 +64,27 @@ function gameLoop(player1, player2) {
   }
 
   function computerTurn() {
-    if (gameOver) {
-      return;
-    }
     let x = Math.floor(Math.random() * 100);
     while(previousAttack.has(x)){
       x = Math.floor(Math.random() * 100);
     }
-    const comphit = playerboard.receiveAttack(x);
-    const cell = player1board.querySelector(`[data-index='${x}']`);
+    computerAI(x);
+    checkgameOver();
+    currentPlayer = switchPlayer();
+  }
+
+  function computerAI(i){
+    if (gameOver) {
+      return;
+    }
+    const comphit = playerboard.receiveAttack(i);
+    const cell = player1board.querySelector(`[data-index='${i}']`);
     if (comphit === true) {
       cell.style.backgroundColor = "#f70202";
     } else {
       cell.style.backgroundColor = "#02d91b";
     }
-    previousAttack.add(x);
-    checkgameOver();
-    currentPlayer = switchPlayer();
+    previousAttack.add(i);
   }
 
   function switchPlayer() {

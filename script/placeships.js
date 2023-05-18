@@ -9,7 +9,6 @@ function placeships(holder, playerboard) {
     let game = true;
     let i = 0;
     const turn = document.getElementById('turn');
-    console.log(i)
     if (game) {
       cells.forEach(cell => {
         cell.addEventListener('click', (event) => {
@@ -30,7 +29,6 @@ function placeships(holder, playerboard) {
             turn.innerText = "Play";
           }
           if (canPlaceShip && noOverlap) {
-            console.log(playerboard.board);
             const ship = Ship(shipsLength[i]);
             playerboard.placeShip(ship, index);  
             for (let k = 0; k < shipsLength[i]; k++) {
