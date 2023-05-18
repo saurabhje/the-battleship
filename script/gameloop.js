@@ -23,7 +23,7 @@ function gameLoop(player1, player2) {
   let currentPlayer = player1;
   let gameOver = false;
 
-  // const cells = document.querySelectorAll('.cell');
+  let leftIndex,rightIndex = null;
   
   player2board.addEventListener("click", (e) => {
     const isvalidclick = checkDouble(e);
@@ -69,8 +69,6 @@ function gameLoop(player1, player2) {
       x = Math.floor(Math.random() * 100);
     }
     computerAI(x);
-    checkgameOver();
-    currentPlayer = switchPlayer();
   }
 
   function computerAI(i){
@@ -85,6 +83,8 @@ function gameLoop(player1, player2) {
       cell.style.backgroundColor = "#02d91b";
     }
     previousAttack.add(i);
+    checkgameOver();
+    currentPlayer = switchPlayer();
   }
 
   function switchPlayer() {
