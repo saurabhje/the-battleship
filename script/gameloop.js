@@ -23,6 +23,8 @@ function gameLoop(player1, player2) {
   let currentPlayer = player1;
   let gameOver = false;
   let previousHits = [];
+  let left = null;
+  let right = null;
 
   
   player2board.addEventListener("click", (e) => {
@@ -63,17 +65,26 @@ function gameLoop(player1, player2) {
   let attackIndex;
 
   function computerTurn() {
-    if(previousHits.length > 0){
-      const lastAttack = previousHits[previousHits.length - 1];
-      const lastAdjacentIndex = getAdjacentIndex(lastAttack);
-      console.log(lastAdjacentIndex);
-      for(const index of lastAdjacentIndex){
-        if(!previousAttack.has(index)){
-          attackIndex = index;
-          break;
-        }
-      }
+    // if(previousHits.length > 0){
+    if(left!=null || right!=null){
+      // const lastAttack = previousHits[previousHits.length - 1];
+      // const lastAdjacentIndex = getAdjacentIndex(lastAttack);
+      // console.log(lastAdjacentIndex);
+      // for(const index of lastAdjacentIndex){
+      //   if(!previousAttack.has(index)){
+      //     attackIndex = index;
+      //     break;
+      //   }
+      // }
       previousHits.pop(); 
+      if(left != null){
+        attackIndex = left
+        left = left - 1
+      }
+      else if(right != null){
+        attackIndex = right
+        right = right + 1
+      }
     }
     else{
       attackIndex = randomAttack();
@@ -87,6 +98,9 @@ function gameLoop(player1, player2) {
     while(previousAttack.has(x)){
       x = Math.floor(Math.random() * 100);
     }
+    if(previousAttack.has(x)){
+      randomAttack()
+    }
     return x;
   }
   
@@ -99,9 +113,26 @@ function gameLoop(player1, player2) {
     if (comphit === true) {
       cell.style.backgroundColor = "#f70202";
       previousHits.push(i);
-      console.log(previousHits);
+      if(left === null){
+        left = i - 1
+      }
+      if (previousAttack.has(left)){
+        left = null
+      }
+      if(right === null){
+        right = i + 1
+      }
+      if (previousAttack.has(right)){
+        right = null
+      }
+
+      // console.log(previousHits);
     } else {
       cell.style.backgroundColor = "#02d91b";
+      if(left != null)
+        left = null
+      else
+        right = null
     }
     previousAttack.add(i);
     checkgameOver();
