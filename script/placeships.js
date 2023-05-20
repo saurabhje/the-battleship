@@ -42,6 +42,7 @@ function placeships(holder, playerboard) {
         });
       });
     }
+    return true;
   } else if (holder === "computer") {
     const shipsLength = [5, 4, 3, 2];
     let shipslen = shipsLength.length;
