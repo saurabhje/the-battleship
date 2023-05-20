@@ -34,9 +34,11 @@ function Gameboard() {
   function getBoard(){
     return board;
   }
-
+  function getShips(){
+    return ships.length;
+  }
   return {
-    board,
+    getShips,
     getBoard,
     placeShip,
     receiveAttack,

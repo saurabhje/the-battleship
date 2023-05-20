@@ -18,12 +18,12 @@ function gameLoop(player1, player2) {
   placeships("player",playerboard);
   placeships("computer",compboard);
 
- 
+ console.log(compboard.getShips())
   let previousAttack = new Set(); //to prevent the comp from attacking the same index twice
   let currentPlayer = player1;
   let gameOver = false;
+  let previousHits = [];
 
-  let leftIndex,rightIndex = null;
   
   player2board.addEventListener("click", (e) => {
     const isvalidclick = checkDouble(e);
@@ -34,12 +34,10 @@ function gameLoop(player1, player2) {
       handleClick(e);
       checkgameOver();
       currentPlayer = switchPlayer();
-      setTimeout(computerTurn, 500);
+      setTimeout(computerTurn, 100);
     }
     
   });
-
-
   
   function checkDouble(e){
     const cellindex = e.target.dataset.index;
@@ -62,15 +60,36 @@ function gameLoop(player1, player2) {
       event.target.style.backgroundColor = "#02d91b";
     }
   }
+  let attackIndex;
 
   function computerTurn() {
+    if(previousHits.length > 0){
+      const lastAttack = previousHits[previousHits.length - 1];
+      const lastAdjacentIndex = getAdjacentIndex(lastAttack);
+      console.log(lastAdjacentIndex);
+      for(const index of lastAdjacentIndex){
+        if(!previousAttack.has(index)){
+          attackIndex = index;
+          break;
+        }
+      }
+      previousHits.pop(); 
+    }
+    else{
+      attackIndex = randomAttack();
+    }
+    
+    computerAI(attackIndex);
+  }
+
+  function randomAttack(){
     let x = Math.floor(Math.random() * 100);
     while(previousAttack.has(x)){
       x = Math.floor(Math.random() * 100);
     }
-    computerAI(x);
+    return x;
   }
-
+  
   function computerAI(i){
     if (gameOver) {
       return;
@@ -79,6 +98,8 @@ function gameLoop(player1, player2) {
     const cell = player1board.querySelector(`[data-index='${i}']`);
     if (comphit === true) {
       cell.style.backgroundColor = "#f70202";
+      previousHits.push(i);
+      console.log(previousHits);
     } else {
       cell.style.backgroundColor = "#02d91b";
     }
@@ -86,6 +107,19 @@ function gameLoop(player1, player2) {
     checkgameOver();
     currentPlayer = switchPlayer();
   }
+
+  function getAdjacentIndex(index){
+    const adjacentIndexes = [];
+    const col = index % 10;
+    if(col > 0){
+      adjacentIndexes.push(index - 1);
+    }
+    if(col < 9){
+      adjacentIndexes.push(index + 1);
+    }
+    return adjacentIndexes;
+  }
+
 
   function switchPlayer() {
     return (currentPlayer = currentPlayer === player1 ? player2 : player1);
