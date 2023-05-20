@@ -76,7 +76,7 @@ function gameLoop(player1, player2) {
       //     break;
       //   }
       // }
-      // previousHits.pop(); 
+      previousHits.pop(); 
       if(left != null){
         attackIndex = left
         left = left - 1
@@ -98,8 +98,9 @@ function gameLoop(player1, player2) {
     while(previousAttack.has(x)){
       x = Math.floor(Math.random() * 100);
     }
-    left = x - 1
-    right = x + 1
+    if(previousAttack.has(x)){
+      randomAttack()
+    }
     return x;
   }
   
@@ -111,7 +112,20 @@ function gameLoop(player1, player2) {
     const cell = player1board.querySelector(`[data-index='${i}']`);
     if (comphit === true) {
       cell.style.backgroundColor = "#f70202";
-      // previousHits.push(i);
+      previousHits.push(i);
+      if(left === null){
+        left = i - 1
+      }
+      if (previousAttack.has(left)){
+        left = null
+      }
+      if(right === null){
+        right = i + 1
+      }
+      if (previousAttack.has(right)){
+        right = null
+      }
+
       // console.log(previousHits);
     } else {
       cell.style.backgroundColor = "#02d91b";
@@ -120,7 +134,7 @@ function gameLoop(player1, player2) {
       else
         right = null
     }
-    // previousAttack.add(i);
+    previousAttack.add(i);
     checkgameOver();
     currentPlayer = switchPlayer();
   }
