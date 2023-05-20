@@ -64,21 +64,27 @@ function gameLoop(player1, player2) {
 
   function computerTurn() {
     if(previousHits.length > 0){
-      const lastAttack = previousHits[previousHits.length - 1];
+      const len = previousHits.length
+      const lastAttack = previousHits[len - 1];
       const lastAdjacentIndex = getAdjacentIndex(lastAttack);
       console.log(lastAdjacentIndex);
-      for(const index of lastAdjacentIndex){
-        if(!previousAttack.has(index)){
-          attackIndex = index;
-          break;
+      const leftIndex = lastAdjacentIndex[0];
+      console.log(`left- ${leftIndex}`);
+      const rightIndex = lastAdjacentIndex[1];
+      console.log(`right - ${rightIndex}`);
+        if(!previousAttack.has(leftIndex)){
+          attackIndex = leftIndex;
+          console.log(`1: ${attackIndex}`);
         }
-      }
-      previousHits.pop(); 
-    }
-    else{
+        if(!previousAttack.has(rightIndex) && lastAttack !== leftIndex && previousAttack.has(leftIndex)){
+          attackIndex = rightIndex;
+          console.log(`2: ${attackIndex}`);
+        }
+        previousHits.pop();
+      } else{
       attackIndex = randomAttack();
-    }
-    
+      }
+    console.log( ` real attack - ${attackIndex}`);
     computerAI(attackIndex);
   }
 
