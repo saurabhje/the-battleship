@@ -15,12 +15,13 @@ function gameLoop(player1, player2) {
 
   placeships("computer", compboard);
 
-  let playerShips = playerboard.getShips();
+  let shipPlaced = false;
+  shipPlaced = placeships("player", playerboard)
+
   console.log(compboard.getShips());
   let previousAttack = new Set(); //to prevent the comp from attacking the same index twice
   let currentPlayer = player1;
   let gameOver = false;
-  let previousHits = [];
 
   
   player2board.addEventListener("click", (e) => {
@@ -63,21 +64,18 @@ function gameLoop(player1, player2) {
   }
 
   let attackIndex;
-
+  let left,right = null
   function computerTurn() {
-    if(previousHits.length > 0){
-      const lastAttack = previousHits[previousHits.length - 1];
-      const lastAdjacentIndex = getAdjacentIndex(lastAttack);
-      console.log(lastAdjacentIndex);
-      for(const index of lastAdjacentIndex){
-        if(!previousAttack.has(index)){
-          attackIndex = index;
-          break;
-        }
+    if(left!= null || right!=null){
+      if(left!=null){
+        attackIndex = left;
+        left = left -1;
       }
-      previousHits.pop(); 
-    }
-    else{
+       else if(right!= null){
+        attackIndex = right;
+        right = right + 1;
+      }
+    } else{
       attackIndex = randomAttack();
     }
 
@@ -100,10 +98,26 @@ function gameLoop(player1, player2) {
     const cell = player1board.querySelector(`[data-index='${i}']`);
     if (comphit === true) {
       cell.style.backgroundColor = "#f70202";
-      previousHits.push(i);
-      console.log(previousHits);
+      if(left == null){
+        left = i - 1;
+      }
+      if(previousAttack.has(left)){
+        left = null;
+      }
+      if(right == null){
+        right = i + 1;
+      }
+      if(previousAttack.has(right)){
+        right = null;
+      }
     } else {
       cell.style.backgroundColor = "#02d91b";
+      if(left != null){
+        left = null
+      }
+      else{
+        right = null;
+      }
     }
     previousAttack.add(i);
     checkgameOver();
