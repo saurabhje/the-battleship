@@ -58,7 +58,8 @@ function placeships(holder, playerboard) {
       } 
       playerboard.placeShip(ship, index);
       i++; 
-    }     
+    }
+    return true;     
   }
 }
 

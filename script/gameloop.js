@@ -13,10 +13,12 @@ function gameLoop(player1, player2) {
   doM.renderBoard(player2board, "computer");
 
 
-  placeships("computer", compboard);
+  
 
   let shipPlaced = false;
   shipPlaced = placeships("player", playerboard)
+  let compShips = false;
+  compShips = placeships("computer", compboard);
 
   console.log(compboard.getShips());
   let previousAttack = new Set(); //to prevent the comp from attacking the same index twice
@@ -25,7 +27,7 @@ function gameLoop(player1, player2) {
 
   
   player2board.addEventListener("click", (e) => {
-      if(shipPlaced){
+      if(shipPlaced && compShips){
         const isvalidclick = checkDouble(e);
         if (isvalidclick) {
           if (currentPlayer !== player1 || gameOver) {
