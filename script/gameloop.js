@@ -17,9 +17,11 @@ function gameLoop(player1, player2) {
 
   let shipPlaced = false;
   shipPlaced = placeships("player", playerboard)
-  let compShips = false;
-  compShips = placeships("computer", compboard);
-
+  let compShips= compboard.getShips();
+  do{
+    placeships("computer" , compboard);
+    
+  } while(compShips !=4)
   console.log(compboard.getShips());
   let previousAttack = new Set(); //to prevent the comp from attacking the same index twice
   let currentPlayer = player1;
