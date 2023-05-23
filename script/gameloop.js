@@ -20,7 +20,6 @@ function gameLoop(player1, player2) {
   let compShips= compboard.getShips();
   do{
     placeships("computer" , compboard);
-    
   } while(compShips !=4)
   console.log(compboard.getShips());
   let previousAttack = new Set(); //to prevent the comp from attacking the same index twice
